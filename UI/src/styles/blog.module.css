@@ -1,0 +1,84 @@
+.blog-box {
+  padding: 20px;
+  max-width: 1200px; /* Ensures the container is wide enough for 3 items */
+  margin: 0 auto; /* Centers the container horizontally */
+}
+
+.row-gap {
+  margin-bottom: 30px; /* Adds vertical gap between rows */
+}
+
+.blog-box-item {
+  display: flex;
+  flex-direction: column;
+  height: 400px; /* Fixed height for each blog box */
+  width: 100%; /* Takes full width of the column */
+  max-width: 350px; /* Limits card width for better centering */
+  margin: 0 auto; /* Centers the card within the column */
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.blog-img {
+  height: 200px; /* Fixed height for image container */
+  overflow: hidden;
+  display: flex;
+  justify-content: center; /* Centers the image horizontally */
+  align-items: center; /* Centers the image vertically */
+}
+
+.blog-img img {
+  width: 100%;
+  height: 200px; /* Fixed image height */
+  object-fit: cover; /* Ensures image covers area without distortion */
+}
+
+.blog-content {
+  padding: 15px;
+  flex: 1; /* Takes remaining space */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center; /* Centers all text content */
+}
+
+.blog-auteher-title {
+  font-size: 12px;
+  color: #666;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.blog-content h4 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap; /* Prevents title from wrapping */
+  color: #333;
+}
+
+.blog-content p {
+  font-size: 14px;
+  margin-bottom: 10px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* Limits to 3 lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  color: #555;
+}
+
+.blog-content a:last-child {
+  font-size: 14px;
+  color: #007bff;
+  text-decoration: none;
+  display: block; /* Ensures the link is centered with text-align */
+}
+
+.blog-content a:last-child:hover {
+  text-decoration: underline;
+}
