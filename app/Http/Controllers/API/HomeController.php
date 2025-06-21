@@ -41,7 +41,7 @@ class HomeController extends Controller
                 'phone'=>$data['phone'],
                 'subject'=>$data['subject'],
                 'comments'=>$data['comments'],
-                'year'=>date("Y");                   
+                'year'=>date("Y"),                   
             ]);
 
             if($sendQuery)
