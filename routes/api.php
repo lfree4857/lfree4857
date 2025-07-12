@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\ApplicationStatusController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\API\BlogController;
 use App\Http\Controllers\API\HomeController;
@@ -27,6 +28,9 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::group(['prefix' => 'v1'], function () {
+
+    
+    Route::get('/application/status', [ApplicationStatusController::class, 'status']);
 
     Route::post('/sendQuery',[HomeController::class,'sendQuery']);
 
