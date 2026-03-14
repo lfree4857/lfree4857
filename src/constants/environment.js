@@ -1,0 +1,1 @@
+export const CLIENT = process.env.NEXT_PUBLIC_CLIENT || "/";
