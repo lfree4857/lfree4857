@@ -9,14 +9,16 @@ const key = CryptoJS.enc.Utf8.parse(SECRET_KEY);
 const iv = CryptoJS.enc.Utf8.parse(SECRET_IV);
 
 export function encryptString(payload: any) {
-    const encrypted = CryptoJS.AES.encrypt(JSON.stringify(payload), key, {
-        iv,
+    const jsonData = JSON.stringify(payload);
+
+    const encrypted = CryptoJS.AES.encrypt(jsonData, key, {
+        iv: iv,
         mode: CryptoJS.mode.CBC,
         padding: CryptoJS.pad.Pkcs7,
     });
-    // Base64-encoded string (matches backend)
-    // Note: btoa/atob are standard in browsers and Node.js 18+ (Next.js)
-    return btoa(encrypted.toString());
+
+    // match PHP base64_encode
+    return CryptoJS.enc.Base64.stringify(encrypted.ciphertext);
 }
 
 export function decryptString(encryptedText: any) {
