@@ -1,13 +1,17 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
-const corsHeaders = {
-    "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-    "Access-Control-Allow-Headers": "Content-Type, Authorization",
-};
+function getCorsHeaders(req: NextRequest) {
+    const origin = req.headers.get('origin');
+    return {
+        "Access-Control-Allow-Origin": origin || "*",
+        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type, Authorization",
+        "Access-Control-Allow-Credentials": "true",
+    };
+}
 
-export async function OPTIONS() {
-    return NextResponse.json({}, { headers: corsHeaders });
+export async function OPTIONS(req: NextRequest) {
+    return NextResponse.json({}, { headers: getCorsHeaders(req) });
 }
 
 function getTimestamp() {
@@ -22,7 +26,7 @@ function getTimestamp() {
     return `${date}T${seconds}.${microseconds}Z`;
 }
 
-export async function GET() {
+export async function GET(req: NextRequest) {
     return NextResponse.json({
         "data": true,
         "error": false,
@@ -30,6 +34,6 @@ export async function GET() {
         "status_code": 200,
         "timestamp": getTimestamp()
     }, {
-        headers: corsHeaders
+        headers: getCorsHeaders(req)
     });
 }
