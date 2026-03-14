@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { encryptString } from '../../../../../shared/crypto';
 
 function getCorsHeaders(req: NextRequest) {
     const origin = req.headers.get('origin');
@@ -27,13 +28,14 @@ function getTimestamp() {
 }
 
 export async function GET(req: NextRequest) {
-    return NextResponse.json({
-        "data": true,
+    const encryptedJson = encryptString({
+        "data": false,
         "error": false,
         "message": "Success",
         "status_code": 200,
         "timestamp": getTimestamp()
-    }, {
+    })
+    return NextResponse.json(encryptedJson, {
         headers: getCorsHeaders(req)
     });
 }
