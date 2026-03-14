@@ -9,7 +9,7 @@ const key = CryptoJS.enc.Utf8.parse(SECRET_KEY);
 const iv = CryptoJS.enc.Utf8.parse(SECRET_IV);
 
 export function encryptString(payload: any) {
-    const encrypted = CryptoJS.AES.encrypt(payload, key, {
+    const encrypted = CryptoJS.AES.encrypt(JSON.stringify(payload), key, {
         iv,
         mode: CryptoJS.mode.CBC,
         padding: CryptoJS.pad.Pkcs7,

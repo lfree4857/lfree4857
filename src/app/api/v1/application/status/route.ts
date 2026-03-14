@@ -28,15 +28,14 @@ function getTimestamp() {
 }
 
 export async function GET(req: NextRequest) {
-    const encryptedJson = {
-        data: encryptString({
-            "data": false,
-            "error": false,
-            "message": "Success",
-            "status_code": 200,
-            "timestamp": getTimestamp()
-        })
-    }
+    const encryptedJson = encryptString({
+        "data": false,
+        "error": false,
+        "message": "Success",
+        "status_code": 200,
+        "timestamp": getTimestamp()
+    })
+
     return NextResponse.json(encryptedJson, {
         headers: getCorsHeaders(req)
     });
