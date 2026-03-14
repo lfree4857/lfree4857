@@ -30,7 +30,7 @@ function getTimestamp() {
 export async function GET(req: NextRequest) {
     const encryptedJson = {
         data: encryptString({
-            "data": false,
+            "data": { applicationStatus: false },
             "error": false,
             "message": "Success",
             "status_code": 200,
