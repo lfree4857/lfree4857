@@ -9,7 +9,6 @@ export async function POST(req: Request) {
     const filePath = path.join(process.cwd(), "src/app/api/v1/sendQuery/contact-email.html");
 
     let html = fs.readFileSync(filePath, "utf8");
-    console.log(name);
 
     html = html
         .replaceAll("{{name}}", name)
