@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>New Comment Submission</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 650px;
+            margin: 30px auto;
+            background-color: #fff;
+            padding: 25px 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header img {
+            max-height: 60px;
+        }
+
+        h2 {
+            color: #0066cc;
+        }
+
+        .info p {
+            margin: 8px 0;
+            font-size: 16px;
+        }
+
+        .info span {
+            font-weight: bold;
+            color: #444;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 13px;
+            color: #888;
+            margin-top: 40px;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="https://ennovatorz.com/client/image/innovators.webp" alt="Company Logo" />
+        </div>
+
+        <h2>New Comment from {{name}}</h2>
+
+        <div class="info">
+            <p><span>Name:</span> &nbsp; {{name}}</p>
+            <p><span>Email:</span> &nbsp; {{email}}</p>
+            <p><span>Phone:</span> &nbsp; {{phone}}</p>
+            <p><span>Subject:</span> &nbsp; {{subject}}</p>
+            <p><span>Comments:</span> &nbsp; {{comments}}</p>
+        </div>
+
+        <div class="footer">
+            &copy; {{year}} Innovators. All rights reserved.<br />
+            Guwahati, Assam, India<br />
+            <a href="mailto:lfree4857@gmail.com">lfree4857@gmail.com</a>
+        </div>
+    </div>
+</body>
+
+</html>

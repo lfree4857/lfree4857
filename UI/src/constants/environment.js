@@ -1,1 +1,0 @@
-export const CLIENT = process.env.REACT_APP_CLIENT
