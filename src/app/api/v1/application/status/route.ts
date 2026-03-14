@@ -24,7 +24,7 @@ function getTimestamp() {
 
 export async function GET() {
     return NextResponse.json({
-        "data": false,
+        "data": true,
         "error": false,
         "message": "Success",
         "status_code": 200,
