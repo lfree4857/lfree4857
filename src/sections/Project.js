@@ -12,7 +12,7 @@ export const Project = () => {
     const [projects, setAllProjects] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const apiUrl = "https://ennovatorz.com/api/v1/mernapi/projects";
+    const apiUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/mernapi/projects`;
 
     useEffect(() => {
         const fetchData = async () => {
@@ -55,7 +55,7 @@ export const Project = () => {
         >
             <div className="container">
                 <div className="blog-inner-con position-relative">
-                    <div className="generic-title text-center">                
+                    <div className="generic-title text-center">
                         <h2 className="mb-0">Projects and Products</h2>
                     </div>
 
@@ -83,11 +83,10 @@ export const Project = () => {
                             {groupedProjects.map((group, rowIdx) => (
                                 <div
                                     key={rowIdx}
-                                    className={`row ${
-                                        rowIdx < groupedProjects.length - 1
-                                            ? styles["row-gap"]
-                                            : ""
-                                    }`}
+                                    className={`row ${rowIdx < groupedProjects.length - 1
+                                        ? styles["row-gap"]
+                                        : ""
+                                        }`}
                                 >
                                     {group.map((project, idx) => (
                                         <div
@@ -106,11 +105,11 @@ export const Project = () => {
                                                 >
                                                     <Link href={`/project/${project.slug}`}>
                                                         <figure className="mb-0">
-                                                        <img
-                                                            src={project.image}
-                                                            alt="blog-img"
-                                                            className="img-fluid"
-                                                        />
+                                                            <img
+                                                                src={project.image}
+                                                                alt="blog-img"
+                                                                className="img-fluid"
+                                                            />
                                                         </figure>
                                                     </Link>
                                                 </div>
@@ -122,7 +121,7 @@ export const Project = () => {
                                                     <div
                                                         className={
                                                             styles[
-                                                                "blog-auteher-title"
+                                                            "blog-auteher-title"
                                                             ]
                                                         }
                                                     >
@@ -139,8 +138,8 @@ export const Project = () => {
                                                     </div>
                                                     <Link href={`/project/${project.slug}`}>
                                                         <h4>
-                                                        {project.title?.substring(0, 30)}{' '}
-                                                        {project.title?.length > 30 ? '...' : ''}
+                                                            {project.title?.substring(0, 30)}{' '}
+                                                            {project.title?.length > 30 ? '...' : ''}
                                                         </h4>
                                                     </Link>
                                                     <p>
@@ -152,7 +151,7 @@ export const Project = () => {
                                                             ? "..."
                                                             : ""}
                                                     </p>
-                                                   <Link href={`/project/${project.slug}`} className={styles['read-more']}>
+                                                    <Link href={`/project/${project.slug}`} className={styles['read-more']}>
                                                         Read More
                                                     </Link>
                                                 </div>

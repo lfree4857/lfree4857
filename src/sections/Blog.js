@@ -12,7 +12,7 @@ export const Blog = () => {
     const [posts, setAllPosts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const apiUrl = "https://ennovatorz.com/api/v1/mernapi/blog-posts";
+    const apiUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/mernapi/blog-posts`;
 
     useEffect(() => {
         const fetchData = async () => {
@@ -84,11 +84,10 @@ export const Blog = () => {
                             {groupedPosts.map((group, rowIdx) => (
                                 <div
                                     key={rowIdx}
-                                    className={`row ${
-                                        rowIdx < groupedPosts.length - 1
-                                            ? styles["row-gap"]
-                                            : ""
-                                    }`}
+                                    className={`row ${rowIdx < groupedPosts.length - 1
+                                        ? styles["row-gap"]
+                                        : ""
+                                        }`}
                                 >
                                     {group.map((blog, idx) => (
                                         <div
@@ -107,11 +106,11 @@ export const Blog = () => {
                                                 >
                                                     <Link href={`/post/${blog.slug}`}>
                                                         <figure className="mb-0">
-                                                        <img
-                                                            src={blog.image}
-                                                            alt="blog-img"
-                                                            className="img-fluid"
-                                                        />
+                                                            <img
+                                                                src={blog.image}
+                                                                alt="blog-img"
+                                                                className="img-fluid"
+                                                            />
                                                         </figure>
                                                     </Link>
                                                 </div>
@@ -123,7 +122,7 @@ export const Blog = () => {
                                                     <div
                                                         className={
                                                             styles[
-                                                                "blog-auteher-title"
+                                                            "blog-auteher-title"
                                                             ]
                                                         }
                                                     >
@@ -140,8 +139,8 @@ export const Blog = () => {
                                                     </div>
                                                     <Link href={`/post/${blog.slug}`}>
                                                         <h4>
-                                                        {blog.title?.substring(0, 30)}{' '}
-                                                        {blog.title?.length > 30 ? '...' : ''}
+                                                            {blog.title?.substring(0, 30)}{' '}
+                                                            {blog.title?.length > 30 ? '...' : ''}
                                                         </h4>
                                                     </Link>
                                                     <p>
@@ -153,7 +152,7 @@ export const Blog = () => {
                                                             ? "..."
                                                             : ""}
                                                     </p>
-                                                   <Link href={`/post/${blog.slug}`} className={styles['read-more']}>
+                                                    <Link href={`/post/${blog.slug}`} className={styles['read-more']}>
                                                         Read More
                                                     </Link>
                                                 </div>

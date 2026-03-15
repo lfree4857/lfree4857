@@ -39,7 +39,7 @@ export const ContactUs = () => {
     const Submit = async (values) => {
         dispatch({ type: 'enablePageLoader' })
         try {
-            const response = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL || "https://ennovatorz.com/api/v1"}/sendQuery`, values);
+            const response = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/sendQuery`, values);
             dispatch({ type: 'enableToaster', payload: { type: 'success', message: response.data.data.message, show: true } })
             dispatch({ type: 'disablePageLoader' })
             handleFormClear()
