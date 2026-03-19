@@ -12,7 +12,7 @@ export const Project = () => {
     const [projects, setAllProjects] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const apiUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/mernapi/projects`;
+    const apiUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/projects`;
 
     useEffect(() => {
         const fetchData = async () => {
@@ -44,8 +44,8 @@ export const Project = () => {
     }, []);
 
     const groupedProjects = [];
-    for (let i = 0; i < projects?.data?.projects.length; i += 3) {
-        groupedProjects.push(projects.data.projects.slice(i, i + 3));
+    for (let i = 0; i < projects?.length; i += 3) {
+        groupedProjects.push(projects.slice(i, i + 3));
     }
 
     return (
@@ -103,10 +103,11 @@ export const Project = () => {
                                                         styles["blog-img"]
                                                     }
                                                 >
-                                                    <Link href={`/project/${project.slug}`}>
+                                                    <Link href={`/project/${project._id}`}>
                                                         <figure className="mb-0">
                                                             <img
-                                                                src={project.image}
+                                                                // src={project.image}
+                                                                src="/image/projects.jpg"
                                                                 alt="blog-img"
                                                                 className="img-fluid"
                                                             />
@@ -136,7 +137,7 @@ export const Project = () => {
                                                             {project.date}
                                                         </span>
                                                     </div>
-                                                    <Link href={`/project/${project.slug}`}>
+                                                    <Link href={`/project/${project._id}`}>
                                                         <h4>
                                                             {project.title?.substring(0, 30)}{' '}
                                                             {project.title?.length > 30 ? '...' : ''}
@@ -151,7 +152,7 @@ export const Project = () => {
                                                             ? "..."
                                                             : ""}
                                                     </p>
-                                                    <Link href={`/project/${project.slug}`} className={styles['read-more']}>
+                                                    <Link href={`/project/${project._id}`} className={styles['read-more']}>
                                                         Read More
                                                     </Link>
                                                 </div>

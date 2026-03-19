@@ -13,24 +13,14 @@ const ProjectDetail = () => {
     const [recentProjects, setRecentProjects] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const apiUrl = "https://ennovatorz.com/api/v1/mernapi/projects";
+    const apiUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/projects/${projectSlug}`;
 
     useEffect(() => {
         const fetchData = async () => {
             try {
                 setLoading(true);
-                const params = {
-                    offset: 0,
-                    limit: 1,
-                    order: "desc",
-                    userId: "",
-                    category: "",
-                    slug: projectSlug,
-                    postId: "",
-                    searchTerm: "",
-                };
-                const response = await axios.get(apiUrl, { params });
-                setIndividualProject(response?.data?.data?.projects[0] || {});
+                const response = await axios.get(apiUrl);
+                setIndividualProject(response?.data || {});
             } catch (err) {
                 console.error("Failed to fetch blog projects:", err);
                 setError(err);
@@ -45,18 +35,8 @@ const ProjectDetail = () => {
         const fetchData = async () => {
             try {
                 setLoading(true);
-                const params = {
-                    offset: 0,
-                    limit: 3,
-                    order: "desc",
-                    userId: "",
-                    category: "",
-                    slug: "",
-                    postId: "",
-                    searchTerm: "",
-                };
-                const response = await axios.get(apiUrl, { params });
-                setRecentProjects(response?.data?.data?.projects || []);
+                const response = await axios.get(apiUrl);
+                setRecentProjects(response?.data || []);
             } catch (err) {
                 console.error("Failed to fetch projects:", err);
                 setError(err);
@@ -94,7 +74,8 @@ const ProjectDetail = () => {
                 <>
                     <div className={styles["blog-hero"]}>
                         <img
-                            src={individualProject.image}
+                            // src={individualProject.image}
+                            src="/image/projects.jpg"
                             alt="blog-img"
                             className={styles["blog-image"]}
                         />

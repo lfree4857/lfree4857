@@ -13,24 +13,14 @@ const BlogDetail = () => {
     const [recentPosts, setRecentPosts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const apiUrl = "https://ennovatorz.com/api/v1/mernapi/blog-posts";
+    const apiUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/blog/${postSlug}`;
 
     useEffect(() => {
         const fetchData = async () => {
             try {
                 setLoading(true);
-                const params = {
-                    offset: 0,
-                    limit: 1,
-                    order: "desc",
-                    userId: "",
-                    category: "",
-                    slug: postSlug,
-                    postId: "",
-                    searchTerm: "",
-                };
-                const response = await axios.get(apiUrl, { params });
-                setIndividualPost(response?.data?.data?.posts[0] || {});
+                const response = await axios.get(apiUrl);
+                setIndividualPost(response?.data || {});
             } catch (err) {
                 console.error("Failed to fetch blog posts:", err);
                 setError(err);
@@ -45,18 +35,8 @@ const BlogDetail = () => {
         const fetchData = async () => {
             try {
                 setLoading(true);
-                const params = {
-                    offset: 0,
-                    limit: 3,
-                    order: "desc",
-                    userId: "",
-                    category: "",
-                    slug: "",
-                    postId: "",
-                    searchTerm: "",
-                };
-                const response = await axios.get(apiUrl, { params });
-                setRecentPosts(response?.data?.data?.posts || []);
+                const response = await axios.get(apiUrl);
+                setRecentPosts(response?.data || []);
             } catch (err) {
                 console.error("Failed to fetch blog posts:", err);
                 setError(err);
@@ -94,7 +74,8 @@ const BlogDetail = () => {
                 <>
                     <div className={styles["blog-hero"]}>
                         <img
-                            src={individualPost.image}
+                            // src={individualPost.image}
+                            src="/image/blog.jpg"
                             alt="blog-img"
                             className={styles["blog-image"]}
                         />

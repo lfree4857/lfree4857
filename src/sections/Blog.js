@@ -7,12 +7,13 @@ import useApi from "../CustomHooks/API";
 import axios from "axios";
 import styles from "../styles/blog.module.css";
 import Link from 'next/link';
+import { base64ToImageFile } from "../Utils/base64ToImage";
 
 export const Blog = () => {
     const [posts, setAllPosts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const apiUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/mernapi/blog-posts`;
+    const apiUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/blog`;
 
     useEffect(() => {
         const fetchData = async () => {
@@ -44,8 +45,8 @@ export const Blog = () => {
     }, []);
 
     const groupedPosts = [];
-    for (let i = 0; i < posts?.data?.posts.length; i += 3) {
-        groupedPosts.push(posts.data.posts.slice(i, i + 3));
+    for (let i = 0; i < posts?.length; i += 3) {
+        groupedPosts.push(posts.slice(i, i + 3));
     }
 
     return (
@@ -104,10 +105,11 @@ export const Blog = () => {
                                                         styles["blog-img"]
                                                     }
                                                 >
-                                                    <Link href={`/post/${blog.slug}`}>
+                                                    <Link href={`/post/${blog._id}`}>
                                                         <figure className="mb-0">
                                                             <img
-                                                                src={blog.image}
+                                                                // src={base64ToImageFile(blog.image)}
+                                                                src="/image/blog.jpg"
                                                                 alt="blog-img"
                                                                 className="img-fluid"
                                                             />
@@ -137,7 +139,7 @@ export const Blog = () => {
                                                             {blog.date}
                                                         </span>
                                                     </div>
-                                                    <Link href={`/post/${blog.slug}`}>
+                                                    <Link href={`/post/${blog._id}`}>
                                                         <h4>
                                                             {blog.title?.substring(0, 30)}{' '}
                                                             {blog.title?.length > 30 ? '...' : ''}
@@ -152,7 +154,7 @@ export const Blog = () => {
                                                             ? "..."
                                                             : ""}
                                                     </p>
-                                                    <Link href={`/post/${blog.slug}`} className={styles['read-more']}>
+                                                    <Link href={`/post/${blog._id}`} className={styles['read-more']}>
                                                         Read More
                                                     </Link>
                                                 </div>
